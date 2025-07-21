@@ -21,65 +21,75 @@ This project allows users to upload a PDF document and interact with an AI-power
    git clone https://github.com/yourusername/pdf-ai-chatbot.git
 Navigate into the Project Directory:
 
-bash
+```bash
 Copy
 cd pdf-ai-chatbot
+```
 Backend Setup (FastAPI)
 1. Set up the Python environment
 Navigate to the chatbot-backend directory:
 
-bash
+```bash
 Copy
 cd chatbot-backend
+```
 Create a Python virtual environment:
 
-bash
+```bash
 Copy
 python3 -m venv venv
+```
 Activate the virtual environment:
 
 On macOS/Linux:
 
-bash
+```bash
 Copy
 source venv/bin/activate
+```
 On Windows:
 
-bash
+```bash
 Copy
 venv\Scripts\activate
+```
 2. Install the required dependencies
 With the virtual environment active, run the following command to install the necessary dependencies:
 
-bash
+```bash
 Copy
 pip install -r requirements.txt
+```
 3. Run the FastAPI backend
 Start the backend by running:
 
-bash
+```bash
 Copy
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
 The backend will now be running at http://localhost:8000.
 
 Frontend Setup (React)
 1. Set up the frontend environment
 Navigate to the my-chatbot directory:
 
-bash
+```bash
 Copy
 cd ../my-chatbot
+```
 Install the required dependencies:
 
-bash
+```bash
 Copy
 npm install
+```
 2. Run the React frontend
 Start the frontend by running:
 
-bash
+```bash
 Copy
 npm run dev
+```
 The frontend will be available at http://localhost:5173.
 
 Running the App
