@@ -20,9 +20,6 @@ This project allows users to upload a PDF document and interact with an AI-power
    git clone https://github.com/yourusername/pdf-ai-chatbot.git
 Navigate into the Project Directory:
 
-bash
-Copy
-cd pdf-ai-chatbot
 Backend Setup (FastAPI)
 1. Set up the Python environment
 Navigate to the chatbot-backend directory:
