@@ -1,76 +1,84 @@
 # PDF AI Chatbot
 
 This project allows users to upload a PDF document and interact with an AI-powered chatbot. The backend is built with **FastAPI**, and the frontend is built with **React**. Users can ask questions based on the contents of the uploaded PDF.
-Table of Contents
-Installation
 
-Backend Setup
+## Table of Contents
 
-Frontend Setup
+- [Installation](#installation)
+- [Backend Setup](#backend-setup)
+- [Frontend Setup](#frontend-setup)
+- [Running the App](#running-the-app)
+- [How It Works](#how-it-works)
+- [License](#license)
 
-Running the App
+## Installation
 
-How It Works
-
-License
-
-Installation
-bash
 1. **Clone the Repository**:
 
    Start by cloning the repository to your local machine:
 
+   ```bash
    git clone https://github.com/yourusername/pdf-ai-chatbot.git
-bash
 Navigate into the Project Directory:
 
+bash
+Copy
 cd pdf-ai-chatbot
 Backend Setup (FastAPI)
-bash
 1. Set up the Python environment
 Navigate to the chatbot-backend directory:
 
-cd chatbot-backend
 bash
+Copy
+cd chatbot-backend
 Create a Python virtual environment:
 
-python3 -m venv venv
 bash
+Copy
+python3 -m venv venv
 Activate the virtual environment:
 
 On macOS/Linux:
 
-source venv/bin/activate
 bash
+Copy
+source venv/bin/activate
 On Windows:
 
-venv\Scripts\activate
 bash
+Copy
+venv\Scripts\activate
 2. Install the required dependencies
 With the virtual environment active, run the following command to install the necessary dependencies:
 
-pip install -r requirements.txt
 bash
+Copy
+pip install -r requirements.txt
 3. Run the FastAPI backend
 Start the backend by running:
 
+bash
+Copy
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 The backend will now be running at http://localhost:8000.
 
 Frontend Setup (React)
-bash
 1. Set up the frontend environment
 Navigate to the my-chatbot directory:
 
-cd ../my-chatbot
 bash
+Copy
+cd ../my-chatbot
 Install the required dependencies:
 
-npm install
 bash
+Copy
+npm install
 2. Run the React frontend
 Start the frontend by running:
 
+bash
+Copy
 npm run dev
 The frontend will be available at http://localhost:5173.
 
@@ -90,5 +98,3 @@ AI Interaction: The extracted text is sent to an AI model (or any reasoning mode
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-
