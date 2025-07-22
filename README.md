@@ -66,7 +66,10 @@ uvicorn main:app --reload
 ```
 FastAPI will be running at: http://localhost:8000
 
-💻 Frontend Setup (React)
+---
+
+##💻 Frontend Setup (React)
+
 1. Navigate to frontend folder
 ```bash
 cd ../my-chatbot
@@ -81,7 +84,9 @@ npm start
 ```
 React app will open at: http://localhost:3000
 
-🌐 Language & Voice Features
+---
+
+##🌐 Language & Voice Features
 
 Select your language from the dropdown.
 
@@ -91,7 +96,9 @@ Use 🔊 to hear the AI's response in your selected language.
 
 Gemini will answer in the same language based on PDF context.
 
-🧪 Supported Languages
+---
+
+##🧪 Supported Languages
 
 Language	Code	Supported in Speech
 
@@ -103,42 +110,40 @@ Marathi ✅
 
 Arabic ✅
 
+---
 
-📦 Dependencies
+##📦 Dependencies
 
 Backend:
-
 FastAPI
-
 PyMuPDF (fitz)
-
 httpx
-
 Uvicorn
 
 Frontend:
-
 React
-
 Tailwind CSS
-
 Web Speech API (browser native)
 
+---
 
-💡 Tips
+##💡 Tips
 
 Make sure your microphone is enabled in your browser settings.
-
 PDFs should contain selectable text (not scanned images). OCR support can be added with Tesseract.
-
 For production, update CORS and restrict API keys.
 
+---
 
-📃 License
+## 📃 License
 
 MIT License
 
-🧑‍💻 Author
+---
+
+## 🧑‍💻 Author
 
 Nihal Girish
 github.com/nihalgirish
+
+---
