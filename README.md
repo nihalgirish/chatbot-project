@@ -1,110 +1,123 @@
-# PDF AI Chatbot
+# 📚 PDF AI Chatbot (Multilingual + Voice Support)
 
-This project allows users to upload a PDF document and interact with an AI-powered chatbot. The backend is built with **FastAPI**, and the frontend is built with **React**. Users can ask questions based on the contents of the uploaded PDF.
+An AI-powered chatbot that lets you upload a PDF and ask questions about its content using text or speech — now supporting **English, Hindi, Marathi, and Arabic**. Built with **React**, **FastAPI**, and **Gemini AI**.
 
-## Table of Contents
+---
 
-- [Installation](#installation)
-- [Backend Setup](#backend-setup)
-- [Frontend Setup](#frontend-setup)
-- [Running the App](#running-the-app)
-- [How It Works](#how-it-works)
-- [License](#license)
+## ✨ Features
 
-## Installation
+- 📄 Upload any PDF document
+- 💬 Ask questions about the content via chat
+- 🎤 Use voice input in your preferred language
+- 🔊 AI responds with speech in the selected language
+- 🌐 Multilingual support: **English**, **Hindi**, **Marathi**, **Arabic**
+- 🧠 Powered by **Gemini 2.5 Flash** for context-aware reasoning
 
-1. **Clone the Repository**:
+---
 
-   Start by cloning the repository to your local machine:
+## 📁 Project Structure
 
-   ```bash
-   git clone https://github.com/yourusername/pdf-ai-chatbot.git
-Navigate into the Project Directory:
+pdf-ai-chatbot/
+├── chatbot-backend/ # FastAPI server (Python)
+└── my-chatbot/ # React frontend (JavaScript)
+
+yaml
+Copy
+Edit
+
+---
+
+## 🚀 Getting Started (Local Setup)
+
+### 🧱 Prerequisites
+
+- Node.js (v18+ recommended)
+- Python 3.10 or higher
+- `pip` (Python package installer)
+- Git
+
+---
+
+## 🛠️ Backend Setup (FastAPI)
+
+### 1. Navigate to backend folder
 
 ```bash
-Copy
-cd pdf-ai-chatbot
-```
-Backend Setup (FastAPI)
-1. Set up the Python environment
-Navigate to the chatbot-backend directory:
-
-```bash
-Copy
 cd chatbot-backend
 ```
-Create a Python virtual environment:
-
+2. Create and activate a virtual environment (optional but recommended)
 ```bash
-Copy
-python3 -m venv venv
-```
-Activate the virtual environment:
-
-On macOS/Linux:
-
-```bash
-Copy
+python -m venv venv
 source venv/bin/activate
+# On Windows: venv\Scripts\activate
 ```
-On Windows:
-
+3. Install dependencies
 ```bash
-Copy
-venv\Scripts\activate
-```
-2. Install the required dependencies
-With the virtual environment active, run the following command to install the necessary dependencies:
-
-```bash
-Copy
 pip install -r requirements.txt
 ```
-3. Run the FastAPI backend
-Start the backend by running:
-
+4. Set your Gemini API key
+Edit main.py and replace the placeholder with your Gemini API key:
 ```bash
-Copy
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+GEMINI_API_KEY = "your-api-key-here"
 ```
-The backend will now be running at http://localhost:8000.
-
-Frontend Setup (React)
-1. Set up the frontend environment
-Navigate to the my-chatbot directory:
-
+5. Run the FastAPI server
 ```bash
-Copy
+uvicorn main:app --reload
+```
+FastAPI will be running at: http://localhost:8000
+
+💻 Frontend Setup (React)
+1. Navigate to frontend folder
+```bash
 cd ../my-chatbot
 ```
-Install the required dependencies:
-
+2. Install Node modules
 ```bash
-Copy
 npm install
 ```
-2. Run the React frontend
-Start the frontend by running:
-
+4. Start the development server
 ```bash
-Copy
-npm run dev
+npm start
 ```
-The frontend will be available at http://localhost:5173.
+React app will open at: http://localhost:3000
 
-Running the App
-Start the backend (FastAPI) by following the Backend Setup section.
+🌐 Language & Voice Features
+Select your language from the dropdown.
 
-Start the frontend (React) by following the Frontend Setup section.
+Use 🎤 to speak your question — the AI will recognize your voice in that language.
 
-Once both are running, open http://localhost:5173 in your browser to interact with the PDF AI chatbot. You can upload a PDF file and ask questions based on its content.
+Use 🔊 to hear the AI's response in your selected language.
 
-How It Works
-Upload a PDF: The frontend allows you to upload a PDF document.
+Gemini will answer in the same language based on PDF context.
 
-Backend Processing: The FastAPI backend processes the PDF and extracts the text using PDF parsing libraries (like PyMuPDF or pdfplumber).
+🧪 Supported Languages
+Language	Code	Supported in Speech
+English	en-US	✅
+Hindi	hi-IN	✅
+Marathi	mr-IN	✅
+Arabic	ar-SA	✅
 
-AI Interaction: The extracted text is sent to an AI model (or any reasoning model like OpenAI, etc.) to provide meaningful answers to user questions.
+📦 Dependencies
+Backend:
+FastAPI
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+PyMuPDF (fitz)
+httpx
+Uvicorn
+
+Frontend:
+React
+Tailwind CSS
+Web Speech API (browser native)
+
+💡 Tips
+Make sure your microphone is enabled in your browser settings.
+PDFs should contain selectable text (not scanned images). OCR support can be added with Tesseract.
+For production, update CORS and restrict API keys.
+
+📃 License
+MIT License
+
+🧑‍💻 Author
+Nihal Girish
+github.com/nihalgirish
