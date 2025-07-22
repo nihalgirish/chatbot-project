@@ -82,6 +82,7 @@ npm start
 React app will open at: http://localhost:3000
 
 🌐 Language & Voice Features
+
 Select your language from the dropdown.
 
 Use 🎤 to speak your question — the AI will recognize your voice in that language.
@@ -91,33 +92,53 @@ Use 🔊 to hear the AI's response in your selected language.
 Gemini will answer in the same language based on PDF context.
 
 🧪 Supported Languages
+
 Language	Code	Supported in Speech
-English	en-US	✅
-Hindi	hi-IN	✅
-Marathi	mr-IN	✅
-Arabic	ar-SA	✅
+
+English	✅
+
+Hindi	✅
+
+Marathi ✅
+
+Arabic ✅
+
 
 📦 Dependencies
+
 Backend:
+
 FastAPI
 
 PyMuPDF (fitz)
+
 httpx
+
 Uvicorn
 
 Frontend:
+
 React
+
 Tailwind CSS
+
 Web Speech API (browser native)
 
+
 💡 Tips
+
 Make sure your microphone is enabled in your browser settings.
+
 PDFs should contain selectable text (not scanned images). OCR support can be added with Tesseract.
+
 For production, update CORS and restrict API keys.
 
+
 📃 License
+
 MIT License
 
 🧑‍💻 Author
+
 Nihal Girish
 github.com/nihalgirish
