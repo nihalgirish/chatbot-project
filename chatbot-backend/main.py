@@ -19,17 +19,13 @@ app.add_middleware(
 # Set your Gemini API key here
 GEMINI_API_KEY = "AIzaSyCPgZTkDG0JcloEOE5g7By5VSWUk48Tzvs"
 
-# Optional: remove Markdown-style formatting
 def clean_markdown(text):
     text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)  # Bold
     text = re.sub(r'\*(.*?)\*', r'\1', text)      # Italics
-    text = re.sub(r'`(.*?)`', r'\1', text)        # Inline code
-    text = re.sub(r'\[(.*?)\]\(.*?\)', r'\1', text)  # Links
     return text
 
 @app.post("/upload-pdf/")
 async def upload_pdf(file: UploadFile = File(...)):
-    # Save uploaded PDF to temp file
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
         contents = await file.read()
         tmp.write(contents)
@@ -47,8 +43,8 @@ async def upload_pdf(file: UploadFile = File(...)):
     return {
         "filename": file.filename,
         "length": len(full_text),
-        "text_preview": "",     # Removed preview as requested
-        "full_text": full_text  # Sent to frontend for question context
+        "text_preview": "",
+        "full_text": full_text
     }
 
 @app.post("/ask/")
@@ -56,9 +52,21 @@ async def ask_ai(request: Request):
     data = await request.json()
     question = data.get("question")
     context = data.get("context")
+    language_code = data.get("language", "en-US")
+
+    # Mapping of language codes to language names (for prompt clarity)
+    language_names = {
+        "en-US": "English",
+        "hi-IN": "Hindi",
+        "mr-IN": "Marathi",
+        "ar-SA": "Arabic"
+    }
+
+    user_language = language_names.get(language_code, "English")
 
     prompt = f"""
-You are an educational assistant. Based on the following document, answer the user's question as clearly as possible.
+You are an educational assistant. The user will ask a question in {user_language}.
+Please respond in {user_language} based strictly on the content of the following document.
 
 Document:
 \"\"\"
@@ -92,15 +100,12 @@ Question:
                 json=body
             )
         
-        # Log the status code and response text
         print(f"Status Code: {res.status_code}")
         print(f"Response Text: {res.text}")
 
-        # Try to parse the response
         response_json = res.json()
         print(f"Parsed JSON: {response_json}")
 
-        # Check if 'candidates' exists in the response
         if "candidates" in response_json:
             text = response_json["candidates"][0]["content"]["parts"][0]["text"]
             return {"answer": text}

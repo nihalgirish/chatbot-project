@@ -12,12 +12,20 @@ function App() {
   const [userInput, setUserInput] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [lastAIResponse, setLastAIResponse] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("en-US");
+
+  const languageOptions = [
+    { code: "en-US", label: "English" },
+    { code: "hi-IN", label: "Hindi" },
+    { code: "mr-IN", label: "Marathi" },
+    { code: "ar-SA", label: "Arabic" },
+  ];
 
   function startVoiceInput() {
     const recognition =
       new window.webkitSpeechRecognition() || new window.SpeechRecognition();
     recognition.continuous = false;
-    recognition.lang = "en-US";
+    recognition.lang = selectedLanguage;
     recognition.interimResults = false;
 
     setIsRecording(true);
@@ -41,6 +49,7 @@ function App() {
   function speak(text) {
     if ("speechSynthesis" in window && text) {
       const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = selectedLanguage;
       window.speechSynthesis.speak(utterance);
     }
   }
@@ -83,6 +92,7 @@ function App() {
       body: JSON.stringify({
         question: userQuestion,
         context: pdfText,
+        language: selectedLanguage,
       }),
     });
 
@@ -97,10 +107,13 @@ function App() {
     <div className="min-h-screen bg-black flex flex-col items-center">
       {/* Fixed Top Banner */}
       <div className="w-full bg-gray-800 text-white py-3 text-center text-3xl font-semibold fixed top-0 shadow z-10">
-        AI Education Agent
+        Multilingual AI Assistant
       </div>
+
       {/* Main chat box with padding to clear fixed header */}
       <div className="mt-20 max-w-full w-[95%] sm:w-[90%] lg:w-[85%] xl:w-[80%] bg-black rounded-lg p-8 space-y-6">
+
+        {/* Chat Display */}
         {chat.map((msg, idx) => (
           <div
             key={idx}
@@ -116,6 +129,7 @@ function App() {
           </div>
         ))}
 
+        {/* File Upload */}
         <input
           type="file"
           accept="application/pdf"
@@ -123,36 +137,54 @@ function App() {
           className="block w-full text-sm text-black bg-white border border-white rounded-xl px-6 py-4 cursor-pointer"
         />
 
+        {/* Controls */}
         {pdfText && (
-          <div className="flex gap-4 items-center">
-            <input
-              type="text"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              placeholder="Ask a question..."
-              className="flex-1 p-4 border border-white text-black rounded-xl bg-white text-xl"
-            />
-            <button
-              onClick={startVoiceInput}
-              className="bg-white text-black rounded-xl px-6 py-4 hover:bg-gray-100"
-              title="Voice input"
-            >
-              🎤
-            </button>
-            <button
-              onClick={handleAsk}
-              className="bg-white text-black px-6 py-4 rounded-xl hover:bg-gray-100"
-            >
-              Ask
-            </button>
-            <button
-              onClick={() => speak(lastAIResponse)}
-              className="bg-white text-black px-6 py-4 rounded-xl hover:bg-gray-100"
-              title="Play last AI response"
-            >
-              🔊
-            </button>
-          </div>
+          <>
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+              {/* Language Selector */}
+              <select
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                className="text-black bg-white border border-white rounded-xl p-4 text-lg w-full sm:w-64"
+              >
+                {languageOptions.map((lang) => (
+                  <option key={lang.code} value={lang.code}>
+                    {lang.label}
+                  </option>
+                ))}
+              </select>
+
+              <div className="flex gap-4 w-full sm:w-auto">
+                <input
+                  type="text"
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  placeholder="Ask a question..."
+                  className="flex-1 p-4 border border-white text-black rounded-xl bg-white text-xl"
+                />
+                <button
+                  onClick={startVoiceInput}
+                  className="bg-white text-black rounded-xl px-6 py-4 hover:bg-gray-100"
+                  title="Voice input"
+                >
+                  🎤
+                </button>
+                <button
+                  onClick={handleAsk}
+                  className="bg-white text-black px-6 py-4 rounded-xl hover:bg-gray-100"
+                >
+                  Ask
+                </button>
+                <button
+                  onClick={() => speak(lastAIResponse)}
+                  className="bg-white text-black px-6 py-4 rounded-xl hover:bg-gray-100"
+                  title="Play last AI response"
+                >
+                  🔊
+                </button>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>
